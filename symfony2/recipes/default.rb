@@ -17,6 +17,10 @@ web_app "project" do
   notifies :reload, resources(:service => "apache2"), :delayed
 end
 
+package "vim" do
+  action :install
+end
+
 package "php5-intl" do
   action :install
 end
