@@ -1,11 +1,13 @@
 require_recipe "apt"
 require_recipe "apache2"
 require_recipe "mysql"
+require_recipe "mysql::server"
 require_recipe "php"
 require_recipe "php::module_mysql"
 require_recipe "php::module_apc"
 require_recipe "php::module_sqlite3"
 require_recipe "apache2::mod_php5"
+require_recipe "gems"
 
 execute "disable-default-site" do
   command "sudo a2dissite default"
@@ -43,3 +45,25 @@ group "www-data" do
   members "vagrant"
 end
 
+gem_package 'mysql' do
+  action :install
+end
+
+mysql_connection_info = {:host => 'localhost', :username => 'root', :password => node['mysql']['server_root_password']}
+
+mysql_database 'symfony' do
+  connection mysql_connection_info
+  action :create
+end
+
+mysql_database_user 'symfony' do
+  connection mysql_connection_info
+  password 'symfony'
+  action :create
+end
+
+mysql_database_user 'symfony' do
+  connection mysql_connection_info
+  database_name 'symfony'
+  action :grant
+end
