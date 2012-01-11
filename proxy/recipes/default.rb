@@ -19,4 +19,9 @@ template "/root/.pearrc" do
   mode "0644"
 end
 
-
+template "/home/vagrant/.gitconfig" do
+  source "gitconfig.erb"
+  owner "vagrant"
+  group "vagrant"
+  mode "0644"
+end
