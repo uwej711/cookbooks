@@ -5,6 +5,8 @@ template "/etc/apt/apt.conf" do
   mode "0644"
 end
 
+require_recipe "apt"
+
 template "/root/.gemrc" do
   source "gemrc.erb"
   owner "root"
@@ -24,4 +26,8 @@ template "/home/vagrant/.gitconfig" do
   owner "vagrant"
   group "vagrant"
   mode "0644"
+end
+
+package "build-essential" do
+  action :install
 end
