@@ -1,5 +1,5 @@
 require_recipe "apt"
-#require_recipe "java"
+require_recipe "java"
 
 package "curl" do
   action :install
