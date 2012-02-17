@@ -14,8 +14,10 @@ execute "disable-default-site" do
   notifies :reload, resources(:service => "apache2"), :delayed
 end
 
-web_app "project" do
-  template "project.conf.erb"
+node.set_unless[:symfony][:port] = "80"
+
+web_app "symfony" do
+  template "symfony.conf.erb"
   notifies :reload, resources(:service => "apache2"), :delayed
 end
 
@@ -49,25 +51,29 @@ group "www-data" do
   members "vagrant"
 end
 
-gem_package 'mysql' do
+package "build-essential" do
   action :install
 end
 
-mysql_connection_info = {:host => 'localhost', :username => 'root', :password => node['mysql']['server_root_password']}
+gem_package "mysql" do
+  action :install
+end
 
-mysql_database 'symfony' do
+mysql_connection_info = {:host => "localhost", :username => "root", :password => node[:mysql][:server_root_password]}
+
+mysql_database "symfony" do
   connection mysql_connection_info
   action :create
 end
 
-mysql_database_user 'symfony' do
+mysql_database_user "symfony" do
   connection mysql_connection_info
-  password 'symfony'
+  password "symfony"
   action :create
 end
 
-mysql_database_user 'symfony' do
+mysql_database_user "symfony" do
   connection mysql_connection_info
-  database_name 'symfony'
+  database_name "symfony"
   action :grant
 end

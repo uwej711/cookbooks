@@ -1,3 +1,7 @@
+node.set_unless[:proxy][:http] = "http://proxy.burda.com:80/"
+node.set_unless[:proxy][:https] = "http://proxy.burda.com:80/"
+node.set_unless[:proxy][:pear] = "proxy.burda.com:80"
+
 template "/etc/apt/apt.conf" do
   source "apt.conf.erb"
   owner "root"
@@ -26,8 +30,4 @@ template "/home/vagrant/.gitconfig" do
   owner "vagrant"
   group "vagrant"
   mode "0644"
-end
-
-package "build-essential" do
-  action :install
 end
