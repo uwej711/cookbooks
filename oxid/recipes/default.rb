@@ -3,6 +3,7 @@ require_recipe "mysql"
 require_recipe "mysql::server"
 require_recipe "php"
 require_recipe "php::module_mysql"
+require_recipe "php::module_gd"
 require_recipe "apache2::mod_php5"
 require_recipe "gems"
 

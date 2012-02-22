@@ -6,6 +6,7 @@ require_recipe "php"
 require_recipe "php::module_mysql"
 require_recipe "php::module_apc"
 require_recipe "php::module_sqlite3"
+require_recipe "php::mopule_curl"
 require_recipe "apache2::mod_php5"
 require_recipe "gems"
 
