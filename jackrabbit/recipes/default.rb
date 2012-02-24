@@ -31,6 +31,6 @@ execute 'jackrabbit' do
 end 
 
 service "jackrabbit" do
-  action :start
+  action [ :enable, :start ] 
 end
 
