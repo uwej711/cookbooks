@@ -70,6 +70,7 @@ end
 mysql_database_user "symfony" do
   connection mysql_connection_info
   password "symfony"
+  host "%"
   action :create
 end
 

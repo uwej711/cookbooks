@@ -29,6 +29,7 @@ end
 mysql_database_user "oxid" do
   connection mysql_connection_info
   password "oxid"
+  host "%"
   action :create
 end
 
