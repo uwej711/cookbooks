@@ -1,3 +1,4 @@
+.svn
 tmp/*
 .chef
 .rake_test_cache
