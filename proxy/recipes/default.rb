@@ -25,6 +25,13 @@ template "/root/.pearrc" do
   mode "0644"
 end
 
+template "/root/.npmrc" do
+  source "npmrc.erb"
+  owner "root"
+  group "root"
+  mode "0644"
+end
+
 template "/home/vagrant/.gitconfig" do
   source "gitconfig.erb"
   owner "vagrant"

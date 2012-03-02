@@ -9,6 +9,7 @@ require_recipe "php::module_sqlite3"
 require_recipe "php::module_curl"
 require_recipe "apache2::mod_php5"
 require_recipe "gems"
+require_recipe "nodejs"
 
 execute "disable-default-site" do
   command "sudo a2dissite default"
@@ -79,3 +80,8 @@ mysql_database_user "symfony" do
   database_name "symfony"
   action :grant
 end
+
+execute 'npm-less' do
+  command 'npm install less -g'
+end 
+
